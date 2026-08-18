@@ -1,0 +1,79 @@
+[
+  {
+    "id": "general-greeting",
+    "question": "hi",
+    "expected_type": "GENERAL",
+    "expected_emergency": false,
+    "expected_verdict": null,
+    "expected_grounded": null,
+    "expected_keywords": [],
+    "expected_pages": [],
+    "notes": "Should bypass RAG entirely via fast triage path"
+  },
+  {
+    "id": "cardio-symptoms",
+    "question": "What are the symptoms suggesting cardiovascular involvement?",
+    "expected_type": "MEDICAL",
+    "expected_emergency": false,
+    "expected_verdict": "CORRECT",
+    "expected_grounded": true,
+    "expected_keywords": ["chest pain", "dyspnea", "palpitation"],
+    "expected_pages": [9],
+    "notes": "Core content, should retrieve A.1 section directly"
+  },
+  {
+    "id": "liver-site-determination",
+    "question": "How is the site of a liver disease determined?",
+    "expected_type": "MEDICAL",
+    "expected_emergency": false,
+    "expected_verdict": "CORRECT",
+    "expected_grounded": true,
+    "expected_keywords": ["ultrasonography", "jaundice"],
+    "expected_pages": [31, 35],
+    "notes": "Multi-chunk diffuse topic, tests coverage across sections"
+  },
+  {
+  "id": "renal-etiology",
+  "question": "What are the common causes of kidney disease?",
+  "expected_type": "MEDICAL",
+  "expected_emergency": false,
+  "expected_verdict": "CORRECT",
+  "expected_grounded": true,
+  "expected_keywords": ["diabetes", "hypertension", "collagen"],
+  "expected_pages": [37],
+  "notes": "Tests the box-list content under RENAL DISEASE chapter"
+  },
+  {
+    "id": "respiratory-cough-analysis",
+    "question": "How does the character of a cough help localize respiratory disease?",
+    "expected_type": "MEDICAL",
+    "expected_emergency": false,
+    "expected_verdict": "CORRECT",
+    "expected_grounded": true,
+    "expected_keywords": ["bronchial", "tracheal", "pleural"],
+    "expected_pages": [16],
+    "notes": "Tests SYMPTOM ANALYSIS chapter, distinct cough-type descriptions"
+  },
+  {
+    "id": "out-of-scope-question",
+    "question": "What is the treatment protocol for malaria?",
+    "expected_type": "MEDICAL",
+    "expected_emergency": false,
+    "expected_verdict": "WEAK",
+    "expected_grounded": null,
+    "expected_keywords": [],
+    "expected_pages": [],
+    "notes": "This book has no malaria content — must correctly refuse, not hallucinate"
+  },
+  {
+    "id": "unanswerable-pediatric-followup",
+    "question": "What specific cardiovascular symptoms occur in children under 5 years old?",
+    "expected_type": "MEDICAL",
+    "expected_emergency": false,
+    "expected_verdict": null,
+    "expected_grounded": null,
+    "expected_keywords": [],
+    "expected_pages": [],
+    "notes": "Book has no pediatric-specific data — verdict may be CORRECT (finds tangential congenital content) but should NOT be grounded=true with fabricated pediatric specifics. Manually inspect this one."
+  }
+]
