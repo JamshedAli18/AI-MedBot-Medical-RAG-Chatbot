@@ -25,7 +25,7 @@ app = FastAPI(title="MedBot API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # tighten to your frontend domain before real deployment
+    allow_origins=["https://medbot-orpin.vercel.app"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
